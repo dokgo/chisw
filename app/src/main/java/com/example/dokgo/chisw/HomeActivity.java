@@ -22,10 +22,7 @@ public class HomeActivity extends AppCompatActivity {
 
         initViews();
 
-        SharedPreferences prefs =
-                PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-
-        int counter = prefs.getInt(COUNTER, -1);
+        int counter = getCounter();
 
         counterView.setText(Integer.toString(counter));
         emailView.setOnClickListener(new View.OnClickListener() {
@@ -39,6 +36,13 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private int getCounter() {
+        SharedPreferences prefs =
+                PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+        return prefs.getInt(COUNTER, -1);
     }
 
     private void initViews() {

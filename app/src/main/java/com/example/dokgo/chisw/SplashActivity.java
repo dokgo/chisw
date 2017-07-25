@@ -15,11 +15,7 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SharedPreferences prefs =
-                PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-
-        int counter = prefs.getInt(COUNTER, -1);
-        prefs.edit().putInt(COUNTER, ++counter).apply();
+        updateCounter();
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -29,5 +25,13 @@ public class SplashActivity extends AppCompatActivity {
                 finish();
             }
         }, SPLASH_TIME);
+    }
+
+    private void updateCounter() {
+        SharedPreferences prefs =
+                PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+        int counter = prefs.getInt(COUNTER, 0);
+        prefs.edit().putInt(COUNTER, ++counter).apply();
     }
 }
