@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private static final String COUNTER = "counter";
     private TextView counterView;
     private TextView emailView;
 
@@ -22,7 +21,7 @@ public class HomeActivity extends AppCompatActivity {
 
         initViews();
 
-        int counter = getCounter();
+        int counter = CounterService.getCounter(getApplicationContext());
 
         counterView.setText(Integer.toString(counter));
         emailView.setOnClickListener(new View.OnClickListener() {
@@ -36,13 +35,6 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    private int getCounter() {
-        SharedPreferences prefs =
-                PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-
-        return prefs.getInt(COUNTER, -1);
     }
 
     private void initViews() {
